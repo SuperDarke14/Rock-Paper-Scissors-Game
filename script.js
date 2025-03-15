@@ -1,7 +1,9 @@
 //Print RPS for title ONLY ONCE
 console.log(`Welcome to Rock Paper Scissors with a\n
-	statistically perfect opponent`
-);
+statistically perfect opponent`);
+var playerScore = 0;
+var compScore = 0;
+
 function rockPaperScissors(){
 	//New variable to store user input
 	const user_input = userInput();
@@ -11,7 +13,7 @@ function rockPaperScissors(){
 	if (user_input) {
 		//Determine randomly computer's chocie
 		const compChoice = computerChoice();
-		console.log(compChoice);
+		console.log(`Computer Choice: ${compChoice}`);
 		//Compare User's choice with computer's choice and determine winner
 		
 		determineWinner(user_input, compChoice);
@@ -44,30 +46,36 @@ function determineWinner(user_input, compChoice) {
 				break;
 			case 'paper':
 				console.log('You lose!');
+				compScore++;
 				break;
 			case 'scissors':
 				console.log('You win!');
+				playerScore++;
 				break;
 		}
 	} else if (temp === 'paper') {
 		switch (compChoice) {
 			case 'rock':
 				console.log('You win!');
+				playerScore++;
 				break;
 			case 'paper':
 				console.log('tie');
 				break;
 			case 'scissors':
 				console.log('You lose');
+				compScore++;
 				break;
 		}
 	} else if (temp === 'scissors') {
 		switch (compChoice) {
 			case 'rock':
 				console.log('You lose!');
+				compScore++;
 				break;
 			case 'paper':
 				console.log('You win!');
+				playerScore++;
 				break;
 			case 'scissors':
 				console.log('You tie!');
@@ -75,4 +83,15 @@ function determineWinner(user_input, compChoice) {
 		}
 	} else { console.log('invalid input') };
 }
-
+function playGame() {
+	while (playerScore <= 5 || compScore <=5) {
+		rockPaperScissors();
+		console.log(`Player Score: ${playerScore}, Computer Score ${compScore}`);
+		
+	};
+	if (playerScore === 5) {
+			console.log('Player won the game!');
+		} else if (compScore === 5) {
+			console.log('Computer has won the game.');
+		};
+}
