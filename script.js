@@ -84,7 +84,7 @@ function determineWinner(user_input, compChoice) {
 	} else { console.log('invalid input') };
 }
 function playGame() {
-	while (playerScore <= 5 || compScore <=5) {
+	while (playerScore < 5 && compScore < 5) {
 		rockPaperScissors();
 		console.log(`Player Score: ${playerScore}, Computer Score ${compScore}`);
 		
