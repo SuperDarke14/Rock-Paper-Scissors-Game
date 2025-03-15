@@ -4,29 +4,29 @@ statistically perfect opponent`);
 var playerScore = 0;
 var compScore = 0;
 
-function rockPaperScissors(){
+function startRound(){
 	//New variable to store user input
-	const user_input = userInput();
+	const user_input = getUserInput();
 	//User input into variable
 
 	console.log(`User input is ${user_input}`);
 	if (user_input) {
 		//Determine randomly computer's chocie
-		const compChoice = computerChoice();
+		const compChoice = getComputerChoice();
 		console.log(`Computer Choice: ${compChoice}`);
 		//Compare User's choice with computer's choice and determine winner
 		
 		determineWinner(user_input, compChoice);
 	}
 }
-function userInput() {
+function getUserInput() {
 	const temp = prompt(`Do you choose rock, paper, or scissors?`);
 	if (['rock','paper', 'scissors'].includes(temp.trim().toLowerCase())) {
 		return temp.trim().toLowerCase();
 	} else {console.log('Invalid input!')};
 	
 }
-function computerChoice(){
+function getComputerChoice(){
 	//pick number 1 to 3
 	const choiceIndex = Math.floor(Math.random() * 3); //why is there no easy way to generate an int :/ 
 	//initialize array of [rock, paper, scissors]
@@ -85,7 +85,7 @@ function determineWinner(user_input, compChoice) {
 }
 function playGame() {
 	while (playerScore < 5 && compScore < 5) {
-		rockPaperScissors();
+		startRound();
 		console.log(`Player Score: ${playerScore}, Computer Score ${compScore}`);
 		
 	};
