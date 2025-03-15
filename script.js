@@ -4,26 +4,35 @@ console.log(`Welcome to Rock Paper Scissors with a\n
 );
 function rockPaperScissors(){
 	//New variable to store user input
-	const user_input = prompt(`Do you choose rock, paper, or scissors?`);
+	const user_input = userInput();
 	//User input into variable
 
-	console.log(user_input);
-
-	//Determine randomly computer's chocie
-	const compChoice = computerChoice();
-	console.log(compChoice);
-	//Compare User's choice with computer's choice and determine winner
+	console.log(`User input is ${user_input}`);
+	if (user_input) {
+		//Determine randomly computer's chocie
+		const compChoice = computerChoice();
+		console.log(compChoice);
+		//Compare User's choice with computer's choice and determine winner
+		
+		determineWinner(user_input, compChoice);
+	}
+}
+function userInput() {
+	const temp = prompt(`Do you choose rock, paper, or scissors?`);
+	if (['rock','paper', 'scissors'].includes(temp.trim().toLowerCase())) {
+		return temp.trim().toLowerCase();
+	} else {console.log('Invalid input!')};
 	
-	determineWinner(user_input, compChoice);
 }
 function computerChoice(){
 	//pick number 1 to 3
-	const choiceIndex = (Math.floor(Math.random() * 3)-1); //why is there no easy way to generate an int :/ 
-	//goofy minus one because of array indexing from 0
+	const choiceIndex = Math.floor(Math.random() * 3); //why is there no easy way to generate an int :/ 
 	//initialize array of [rock, paper, scissors]
 	const rpsArray = ['rock', 'paper', 'scissors'];
 	//return number's index's string
 	return rpsArray[choiceIndex];
+	//note: to do this without arrays, take choice index and
+	//do an if-else tree: if ci == 1 return rock, 0 return paper, 2 return scissors;
 }
 
 function determineWinner(user_input, compChoice) {
