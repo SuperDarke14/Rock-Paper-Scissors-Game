@@ -11,27 +11,19 @@ let updateItem = function (item, newContent) {
 	item.textContent = newContent;
 }
 
-function startRound(){
+function startRound(choice){
 	//New variable to store user input
-	const user_input = getUserInput();
 	//User input into variable
 
-	updateItem(choiceArea, `User input is ${user_input}`);
-	if (user_input) {
+	updateItem(choiceArea, `User input is ${choice}`);
+	if (choice) {
 		//Determine randomly computer's chocie
 		const compChoice = getComputerChoice();
 		updateItem(choiceArea, `Computer Choice: ${compChoice}`);
 		//Compare User's choice with computer's choice and determine winner
 		
-		determineWinner(user_input, compChoice);
+		determineWinner(choice, compChoice);
 	}
-}
-function getUserInput() {
-	const temp = prompt(`Do you choose rock, paper, or scissors?`);
-	if (['rock','paper', 'scissors'].includes(temp.trim().toLowerCase())) {
-		return temp.trim().toLowerCase();
-	} else {updateItem(choiceArea, 'Invalid input!')};
-		
 }
 function getComputerChoice(){
 	//pick number 1 to 3
@@ -44,8 +36,8 @@ function getComputerChoice(){
 	//do an if-else tree: if ci == 1 return rock, 0 return paper, 2 return scissors;
 }
 
-function determineWinner(user_input, compChoice) {
-	const temp = user_input.toLowerCase(); //error handling
+function determineWinner(choice, compChoice) {
+	const temp = choice; //error handling
 	if (temp === 'rock') {
 		switch (compChoice) {
 			case 'rock':
@@ -107,5 +99,14 @@ let buttonList = document.querySelectorAll("button");
 for (let i = 0; i < buttonList.length; i++) {
 	buttonList[i].addEventListener('click', startRound);
 
-	console.log(buttonList[i]);
 };
+
+
+const rockButton = document.querySelector('#rockButton')
+rockButton.addEventListener('click', () => startRound('rock'));
+const scissorsButton = document.querySelector('#scissorsButton')
+scissorsButton.addEventListener('click', () => startRound('scissors'));
+const paperButton = document.querySelector('#paperButton')
+paperButton.addEventListener('click', () => startRound('paper'));
+
+
