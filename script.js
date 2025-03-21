@@ -24,7 +24,7 @@ function getUserInput() {
 	if (['rock','paper', 'scissors'].includes(temp.trim().toLowerCase())) {
 		return temp.trim().toLowerCase();
 	} else {console.log('Invalid input!')};
-	
+		
 }
 function getComputerChoice(){
 	//pick number 1 to 3
