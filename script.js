@@ -5,8 +5,7 @@ var playerScore = 0;
 var compScore = 0;
 const choiceArea = document.querySelector('#choiceArea');
 const resultsArea = document.querySelector('#resultsArea');
-console.log(choiceArea);
-console.log(resultsArea)
+const winnerArea = document.querySelector('#winnerArea');
 
 let updateItem = function (item, newContent) {
 	item.textContent = newContent;
@@ -90,17 +89,17 @@ function determineWinner(user_input, compChoice) {
 				break;
 		}
 	} else { console.log('invalid input') };
+	scorePrint();
 }
-function playGame() {
-	while (playerScore < 5 && compScore < 5) {
-		startRound();
-		console.log(`Player Score: ${playerScore}, Computer Score ${compScore}`);
+function scorePrint() {
+	if (playerScore < 5 && compScore < 5) {
+		updateItem(winnerArea, `Player Score: ${playerScore}, Computer Score ${compScore}`);
 		
 	};
 	if (playerScore === 5) {
-			console.log('Player won the game!');
+			updateItem(winnerArea, 'Player won the game!');
 		} else if (compScore === 5) {
-			console.log('Computer has won the game.');
+			updateItem(winnerArea, 'Computer has won the game.');
 		};
 }
 
