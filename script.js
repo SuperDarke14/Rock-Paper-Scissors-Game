@@ -3,18 +3,25 @@ console.log(`Welcome to Rock Paper Scissors with a\n
 statistically perfect opponent`);
 var playerScore = 0;
 var compScore = 0;
+const choiceArea = document.querySelector('#choiceArea');
+const resultsArea = document.querySelector('#resultsArea');
+console.log(choiceArea);
+console.log(resultsArea)
 
+let updateItem = function (item, newContent) {
+	item.textContent = newContent;
+}
 
 function startRound(){
 	//New variable to store user input
 	const user_input = getUserInput();
 	//User input into variable
 
-	console.log(`User input is ${user_input}`);
+	updateItem(choiceArea, `User input is ${user_input}`);
 	if (user_input) {
 		//Determine randomly computer's chocie
 		const compChoice = getComputerChoice();
-		console.log(`Computer Choice: ${compChoice}`);
+		updateItem(choiceArea, `Computer Choice: ${compChoice}`);
 		//Compare User's choice with computer's choice and determine winner
 		
 		determineWinner(user_input, compChoice);
@@ -24,7 +31,7 @@ function getUserInput() {
 	const temp = prompt(`Do you choose rock, paper, or scissors?`);
 	if (['rock','paper', 'scissors'].includes(temp.trim().toLowerCase())) {
 		return temp.trim().toLowerCase();
-	} else {console.log('Invalid input!')};
+	} else {updateItem(choiceArea, 'Invalid input!')};
 		
 }
 function getComputerChoice(){
@@ -43,43 +50,43 @@ function determineWinner(user_input, compChoice) {
 	if (temp === 'rock') {
 		switch (compChoice) {
 			case 'rock':
-				console.log('tie');
+				updateItem(resultsArea, 'tie');
 				break;
 			case 'paper':
-				console.log('You lose!');
+				updateItem(resultsArea, 'You lose!');
 				compScore++;
 				break;
 			case 'scissors':
-				console.log('You win!');
+				updateItem(resultsArea, 'You win!');
 				playerScore++;
 				break;
 		}
 	} else if (temp === 'paper') {
 		switch (compChoice) {
 			case 'rock':
-				console.log('You win!');
+				updateItem(resultsArea, 'You win!');
 				playerScore++;
 				break;
 			case 'paper':
-				console.log('tie');
+				updateItem(resultsArea, 'tie');
 				break;
 			case 'scissors':
-				console.log('You lose');
+				updateItem(resultsArea, 'You lose');
 				compScore++;
 				break;
 		}
 	} else if (temp === 'scissors') {
 		switch (compChoice) {
 			case 'rock':
-				console.log('You lose!');
+				updateItem(resultsArea, 'You lose!');
 				compScore++;
 				break;
 			case 'paper':
-				console.log('You win!');
+				updateItem(resultsArea, 'You win!');
 				playerScore++;
 				break;
 			case 'scissors':
-				console.log('You tie!');
+				updateItem(resultsArea, 'You tie!');
 				break;
 		}
 	} else { console.log('invalid input') };
