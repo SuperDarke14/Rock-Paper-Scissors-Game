@@ -4,6 +4,7 @@ statistically perfect opponent`);
 var playerScore = 0;
 var compScore = 0;
 
+
 function startRound(){
 	//New variable to store user input
 	const user_input = getUserInput();
@@ -95,3 +96,10 @@ function playGame() {
 			console.log('Computer has won the game.');
 		};
 }
+
+let buttonList = document.querySelectorAll("button");
+for (let i = 0; i < buttonList.length; i++) {
+	buttonList[i].addEventListener('click', startRound);
+
+	console.log(buttonList[i]);
+};
